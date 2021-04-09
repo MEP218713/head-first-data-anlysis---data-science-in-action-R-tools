@@ -1,0 +1,1319 @@
+\documentclass[11pt,a4paper,oneside]{book}
+%-- coding: UTF-8 --
+\usepackage[UTF8]{ctex}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{float}   %{H}
+\usepackage{booktabs}  %\toprule[1.5pt]
+\setcounter{secnumdepth}{4}
+\usepackage{indentfirst} %首行缩进
+\usepackage{tcolorbox} %彩色框框
+\usepackage{graphicx}  %图片并排
+\usepackage{subfigure} %图片并排
+\usepackage{graphicx} %插入jpg
+\setcounter{secnumdepth}{4}		%增加编号深度
+\setcounter{tocdepth}{4}		%增加目录深度
+\usepackage{hyperref}     %生成pdf书签
+\hypersetup{hidelinks,
+	colorlinks=true,
+	allcolors=black,
+	pdfstartview=Fit,
+	breaklinks=true
+}       %去掉目录的红色框框
+%===================%插入代码需要的控制
+\usepackage{listings}
+\usepackage{xcolor}
+\setmonofont{Consolas}%字体
+\lstset{%
+	numbers=left,
+	numberstyle=\tt\tiny,%
+	showstringspaces=false,
+	showspaces=false,%
+	tabsize=4,%
+	frame=lines,%
+	basicstyle=\tt\small,%
+	keywordstyle=\color{ blue!70}\bfseries,%
+	identifierstyle=,%
+	commentstyle=\color{red!50!green!50!blue!50},%\itshape,%
+	stringstyle=\color{black},%
+	breaklines=true
+}
+%===================%
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\newtheorem{theorem}{定理}
+\newtheorem{definition}{定义}
+
+\title{\huge NOTE on Data Analysis}
+\author{zy}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents  %目录
+\part{Head first on data analysis}
+\chapter{数据分析引言:分解数据} 
+\section{数据分析的基本流程:}
+\begin{enumerate}
+	\item[1.]确定:了解问题,确定问题.
+	\item[2.]分解:数据分析总的来说就是分解问题和数据,使其成为更小的组成部分.
+	\item[3.]评估:在这一步对前两步了解到的情况做出各种结论.
+	\item[4.]决策:把这些结论重新组合在一起,作出建议/决策.
+\end{enumerate} 
+\subsection{确定问题}
+客户将根据你的分析做出决策,你需要尽量从他那里了解多一些信息,才能确定问题.
+
+\begin{itemize}
+	\item 你对客户了解越深,分析越有可能派上用场.
+	\item 没必要先在脑子里形成问题再去浏览数据.数据分析总的来说就是认清问题,继而解决问题.
+	\item 优秀的数据分析师帮助客户思考自己的问题.
+\end{itemize}
+
+你对外界的假设和你确信的观点就是你的心智模型.心智模型决定你的观察结果,是你观察现实的棱镜.你无法看到一切,因此大脑必须做出选择,以便集中注意力,这就是所谓的心智模型大大决定观察结果.如果你了解你的心智模型,那么你发现重点,开发最相关最有用的统计模型的可能性就更大.
+
+心智模型应当包括你不确定的因素.一定要指出不确定的因素,只要能明确不确定因素,你就会小心防范并想办法填补知识的空白,继而提出更好的建议.考虑不确定因素及盲点会让人感觉不爽,但回报显著.
+
+许多由心智模型完成的工作都是为了帮助你填补信息空白.好的一面是,数据分析工具让你有能力以系统而自信的方式填补这些空白,因此指出大量不确定因素,这一做法就是帮助你发现盲点,这要求拥有过硬的数据工作经验.
+\subsection{分解问题}
+你面对的问题常常含糊不清,需要将问题划分为可管理,可解决的组块.
+
+从数据开始时,尝试分解最重要的因子的最好的起步方法就是找出高效的比较因子.进行有效的比较是数据分析的核心.
+
+\subsection{评估组块}
+评估分解组块的关键就是比较.(针对问题的观察结果/因子)(针对数据的观察结果/因子)
+
+让自己介入分析的意思是做出自己明确的假设,并且以自己的信用为自己的结论打赌.在撰写最终报告的时候,一定要提到你自己,这样客户才知道你的结论出自何处.
+
+\subsection{提出建议}
+你的工作是确保自己的意见传达到位,让人们根据你的意见做出正确的决策.
+
+最初的错误假设注定了分析会得出错误的答案,因此,从一开始就务必要基于正确的假设建立模型显得如此重要,并且要做好准备,一旦所得到的数据有违你的假设,就要立即回头重新详加思考.
+
+\chapter{实验:检验你的理论}
+一个好实验往往能让你摆脱对观察数据的无限依赖,帮助你理清因果关系;可靠的实证证据将让你的分析判断更有说服力.
+
+以咖啡销售为例.
+
+\section{随机调查}
+进行客户调查,随机性.
+\section{比较法与观察研究法}
+
+\begin{enumerate}
+	\item[1.]统计与分析最基本的原理之一就是比较法,数据只有通过相互比较才会有意义.
+	
+	\item[2.]统计只有与其他统计相关联,才能给人带来启发.必须进行明确的比较.如果一份统计数据看起来颇有意思,或看来很有用,你就需要针对这份统计数据与其他数据的比较情况,解释为什么会有这种作用. 如果不搞清楚这一点,就等于在假设客户会自己进行这种比较,这是一个不合格的分析.
+	
+	比较越多,分析结果越正确,对于观察研究尤其如此.通过观察数据,你仅仅是在观察人们自己决定所属的群体.搜集观察数据往往是通过实验取得更有用数据的第一步.
+	
+	\begin{tcolorbox}[colback=pink!10!white,colframe=pink!100!black]
+    观察研究法:被研究的人自行决定自己属于哪个群体的一种研究方法
+	\end{tcolorbox}
+
+	\item[3.]分析师们的一个很好的经验法则是,当你开始怀疑因果关系的走向时,如价值感的下降导致销量下降,请进行反向思考,如销量下降导致价值感下降,看看结果怎么样.
+	\item[4.]当涉及判定因果关系时,观察研究法并不是那么强大有力.观察数据无处不在,但是要了解观察研究法的局限性,这样才不会得出错误的结论.
+	\item[5.]混杂因素是观察研究法绕不开的问题.作为分析师,你的工作就是不断考虑混杂因素对分析结果的影响.如果你认为混杂因素的影响微不足道,很好;但如果有理由相信这些混杂因素正在引起问题,那么就需要相应的调整自己的结论.混杂因素通常不会故意在你面前晃悠,为了让自己的数据尽量有说服力,你需要自己动手把这些隐藏的混杂因素挖出来.
+	
+	那要做到什么程度才算是查清楚了混杂因素?
+	
+	这与其说是科学,莫如说是艺术.你不妨就自己正在研究的问题问自己一些常识性的问题,借此想象哪些变量可能会影响你的分析结果.正如数据分析和统计学中的各种手段一样,无论你的量化技术多么出神入化,真正的重点永远是分析的结论要有意义.只要结论有意义,而且你已经彻头彻尾地查找过混杂因素,那么你就已经做了观察研究法要求你做的一切工作.
+\end{enumerate} 
+\section{拆分数据块,管理混杂因素}
+为了控制观察研究混杂因素,有时将数据拆分为更小的数据块是个好想法.
+
+这些小数据块更具同质性,换句话说,这些小数据块不包含那些有可能扭曲你的分析结果及让你产生错误想法的内部偏差.
+如将不同地区分店的调查数据分开.
+\section{实验以控制组为基准}
+控制组,一组体现现状的处理对象,未经过任何新的处理(也称对照组).好的实验总是有一个控制组(对照组),使分析师能够将检验情况与现状进行比较.
+
+控制组和实验组应尽量除了处理因素之外,其余保持相同.
+\section{随机选择相似组}
+从对象池中随机选择对象是避免混杂因素的极好办法.在将对象随机分配到各组里以后,最终的结果是:可能成为混杂因素的那些因素最终在控制组和实验组中具有同票同权.
+
+通过随机选择组成各个组的成员,组与组之间将非常相似,因而具有可比性.
+
+\begin{tcolorbox}[colback=pink!10!white,colframe=pink!100!black]
+	假定在实验中利用随机性将人群分进实验组和控制组,结果是,两个组中的混杂因素X最终分量一样.如果总人数中有半数人含有这种隐性因素,那么划分的每个组中也有半数的人含有这种隐性因素.这就是随机法的力量.
+	
+	随机控制是各种实验的黄金标准.没有它你也能做实验,但是有了它,你就做得最好.随即控制实验能让你最大限度地接近数据分析的核心:证明因果关系.
+\end{tcolorbox}
+\chapter{最优化:寻找最大值}
+问题背景:帮忙找出理想的产品组合使得利润提高.
+
+\section{需要哪些数据}
+最好能知道橡皮鸭和橡皮鱼的盈利能力;约束这个问题的其他因素;生产原料需求量;生产所需时间...
+
+可以将所需要的数据分为两类: A:无法控制的因素  B:可以控制的因素.
+
+A:
+\begin{itemize}
+	\item 橡皮鱼的利润如何,橡皮鸭的利润如何
+	\item 厂家有多少橡胶可以用来生产橡皮鱼,生产橡皮鱼需要多长时间
+	\item 厂家有多少橡胶可以用来生产橡皮鸭,生产橡皮鸭需要多长时间
+\end{itemize}
+
+B:
+\begin{itemize}
+	\item 生产多少橡皮鸭
+	\item 生产多少橡皮鱼
+\end{itemize}
+
+\begin{tcolorbox}[colback=pink!10!white,colframe=pink!100!black]
+1.你需要得到有关能控制因素和不能控制因素的可靠数字.
+
+2. A这些考虑事项被称为约束条件,因为它们将决定问题的有关参数.我们的追求是利润.
+
+3.决策变量是你能控制的因素,即B.
+\end{tcolorbox}
+\section{最优化问题}
+
+当你希望尽量多获得/少获得某种东西,而为了实现这个目的需要改变其他一些量的数值,你就碰到了一个最优化问题.
+
+\subsection{借助目标函数发现目标}
+最简单的目标函数:
+\begin{equation}
+c_1x_1+c_2x_2=P
+\end{equation}
+$c_i$是约束条件, $x_i$是决策变量, P是目标,即期望的最大化对象.
+
+总利润=鸭利润+鱼利润
+\subsection{约束条件}
+划出可行域.
+
+\subsection{excel实现最优化}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{1.png}  
+\end{figure}
+\subsection{按照分析目标校正假设}
+实际上按照以上所得的结果安排生产未必得到希望的结果,你的模型告诉你如何实现最大利润,但仅仅是在你所规定的约束条件下.模型中没有任何因素表明人们真正会购买此产品,有人购买,模型才会生效.
+
+利用历史销售数据可以了解人们愿意买什么,什么时候愿意买.
+\subsection{提防负相关变量}
+查看数据,可以猜测甚至肯定橡皮鸭和橡皮鱼是负相关关系.在节假日销售高峰期间,两种产品会同时出现上升趋势,但永远有一种产品比另一种更领先.
+
+\begin{tcolorbox}[colback=pink!10!white,colframe=pink!100!black]
+不要假定两种变量是不相关的.创建模型时,务必要规定假设中的各种变量的相互关系.	
+\end{tcolorbox}
+
+你需要增加新约束条件用于估计某个月的橡皮鸭和橡皮鱼的需求量.
+
+\subsection{假设立足于不断变化的实际情况}
+你所使用的数据都是观察数据,你无法预知未来.你的模型现在是起作用,但是可能会突然失灵,需要做好准备,以便在必要的时候重新构建分析方法.
+
+反复不断地进行构建正是分析师的工作.
+\chapter{数据图形化:图形让你更精明}
+\section{体现数据}
+创建优秀数据图形的第一要务就是促使客户谨慎思考并制定正确地决策,优秀的数据分析始终都离不开"用数据思考".
+
+\begin{tcolorbox}[colback=pink!10!white,colframe=pink!100!black]
+数据太多会给绘制优秀图形带来困难?
+
+并非全无道理.数据分析的根本在于总结数据,而一些总结工具如求均值,不困数据多少,都同样有效.要是你手头有林林总总的数据可供相互比较,这的确很妙.
+\end{tcolorbox}
+要是手头数据庞杂,而且对于如何处理这些数据没有把握,这时候只要记住你的分析目标:记住目标,目光停留在和目标有关的数据.而且只要数据图形可以解决客户的问题,那么不管是图形设计精美还是扎眼,都会对客户有吸引力.
+\section{数据图形化的根本在于正确比较}
+\begin{lstlisting}[language=r]
+> page<-read.csv("E:/数据分析/headfirst/HeadFirstDataAnalysisCode/
+                  hfda_data/hfda_ch04_home_page1.csv",
+                  stringsAsFactors = FALSE)
+> plot(page$TimeOnSite,page$Revenue,
++      xlab = "浏览时间",ylab = "营业额",xlim=c(0,60))
+> abline(h=mean(page$Revenue),col="grey")
+> abline(v=mean(page$TimeOnSite,col="grey"))
+> abline(h=40,lty=2,col="grey")
+> abline(v=10,lty=2,col="grey")
+\end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{3.png}  
+\end{figure}
+优秀图形的特点:
+\begin{itemize}
+	\item 展示数据
+	\item 作了高明的比较
+	\item 展示了多个变量
+\end{itemize}
+
+散点图是探索性数据分析的工具,分析师喜欢用散点图发现因果关系.
+\section{最优秀的图形都是多元图形}
+如果一个图形可以对三个以上的变量进行比较,那么就是多元图形.只要加上有效的数据分析的基础,于是尽量让图形多元化最有可能促成最有效的比较.
+
+有一个办法让图形多元化,即多张相似的散点图相邻排放.
+
+\part{R数据科学实战---A.工具详解}
+\chapter{数据导入工具}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot001}
+\end{figure}
+
+\section{utils--数据读取}
+\subsection{read.csv/csv2--逗号分隔数据读取}
+即便是以.csv为拓展名的文件也并非一定是以逗号进行分隔的,文件的拓展名也并非必须.处理无拓展名的文本文件数据时,最简单的办法就是使用data.table包中的fread函数.
+
+utils包里的read.csv/csv2是专门用来设置快速读取逗号分隔(read.csv)或分号分隔(read.csv2).注意:这两个函数对小数点的处理:\textbf{前者默认小数点为".",后者","}
+
+\begin{lstlisting}[language=r]
+> d8<-read.csv("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights.csv",header=TRUE)
+\end{lstlisting}
+
+数据文件被读取到R工作环境中第一步通常为\textbf{调用str函数来对该数据对象进行初步检视}.
+\begin{lstlisting}[language=r]
+> str(d8)
+'data.frame':	6 obs. of  6 variables:
+$ carrier : Factor w/ 4 levels "AA","B6","DL",..: 4 4 1 2 3 4
+$ flight  : int  1545 1714 1141 725 461 1696
+$ tailnum : Factor w/ 6 levels "N14228","N24211",..: 1 2 4 6 5 3
+$ origin  : Factor w/ 3 levels "EWR","JFK","LGA": 1 3 2 2 3 1
+$ dest    : Factor w/ 5 levels "ATL","BQN","IAH",..: 3 3 4 2 1 5
+$ air_time: int  227 227 160 183 116 150
+\end{lstlisting}
+
+其他用来检视数据的函数有head,tail,view等.
+
+前文提到, \textbf{.csv并非一定是以逗号进行分隔},如果遇到以非逗号分隔数据值的情况,加之未指定分隔符,会出现读取错误.
+
+\begin{lstlisting}[language=r]
+> d9<-read.csv("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights1.csv",header=TRUE)
+> str(d9)
+'data.frame':	6 obs. of  1 variable:
+$ carrier.flight.tailnum.origin.dest.air_time: Factor w/ 6 levels "AA\t1141\tN619AA\tJFK\tMIA\t160",..: 4 6 1 2 3 5
+
+
+> d9<-read.csv("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights1.csv",sep="\t",header=TRUE)
+> str(d9)
+'data.frame':	6 obs. of  6 variables:
+$ carrier : Factor w/ 4 levels "AA","B6","DL",..: 4 4 1 2 3 4
+$ flight  : int  1545 1714 1141 725 461 1696
+$ tailnum : Factor w/ 6 levels "N14228","N24211",..: 1 2 4 6 5 3
+$ origin  : Factor w/ 3 levels "EWR","JFK","LGA": 1 3 2 2 3 1
+$ dest    : Factor w/ 5 levels "ATL","BQN","IAH",..: 3 3 4 2 1 5
+$ air_time: int  227 227 160 183 116 150
+\end{lstlisting}
+
+根据实际情况,字符型数据有时会是因子,有时不会.如果使用read.csv默认的读取方式,那么字符型数据全因子化,会对后续的数据分析带来很多麻烦.所以最好是将字符因子化关掉.(\textbf{stringasfactor})
+\begin{lstlisting}[language=r]
+> d10<-read.csv("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights1.csv",stringsAsFactors=F,sep="\t",header=TRUE)
+> str(d10)
+'data.frame':	6 obs. of  6 variables:
+$ carrier : chr  "UA" "UA" "AA" "B6" ...
+$ flight  : int  1545 1714 1141 725 461 1696
+$ tailnum : chr  "N14228" "N24211" "N619AA" "N804JB" ...
+$ origin  : chr  "EWR" "LGA" "JFK" "JFK" ...
+$ dest    : chr  "IAH" "IAH" "MIA" "BQN" ...
+$ air_time: int  227 227 160 183 116 150
+\end{lstlisting}
+
+\subsection{read.delim/delim2--特定分隔符数据读取}
+这两个函数是专门用来处理以tab分割数据的文件的.
+
+delim可用来读取小数点是"."的数据,delim2则用来处理小数点","的数据.
+
+\subsection{read.table--任意分隔符数据读取}
+read.table函数会将文件读成数据框的格式,将分隔符作为区分变量的依据.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{screenshot002}
+\end{figure}
+\begin{lstlisting}[language=r]
+> d11<-read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights.csv")
+> head(d11)
+V1
+1 carrier,flight,tailnum,origin,dest,air_time
+2                  UA,1545,N14228,EWR,IAH,227
+3                  UA,1714,N24211,LGA,IAH,227
+4                  AA,1141,N619AA,JFK,MIA,160
+5                   B6,725,N804JB,JFK,BQN,183
+6                   DL,461,N668DN,LGA,ATL,116
+\end{lstlisting}
+因为函数默认的分隔符是空白(不是空格),所以应有的6个变量都被堵在一列中.
+
+指定header参数为真:
+\begin{lstlisting}[language=r]
+> d11<-read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights.csv",header=T)
+> head(d11)
+carrier.flight.tailnum.origin.dest.air_time
+1                  UA,1545,N14228,EWR,IAH,227
+2                  UA,1714,N24211,LGA,IAH,227
+3                  AA,1141,N619AA,JFK,MIA,160
+4                   B6,725,N804JB,JFK,BQN,183
+5                   DL,461,N668DN,LGA,ATL,116
+6                  UA,1696,N39463,EWR,ORD,150
+\end{lstlisting}
+
+指定分隔符:
+\begin{lstlisting}[language=r]
+> d11<-read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights.csv",header=T,sep=",")
+> head(d11)
+  carrier flight tailnum origin dest air_time
+1      UA   1545  N14228    EWR  IAH      227
+2      UA   1714  N24211    LGA  IAH      227
+3      AA   1141  N619AA    JFK  MIA      160
+4      B6    725  N804JB    JFK  BQN      183
+5      DL    461  N668DN    LGA  ATL      116
+6      UA   1696  N39463    EWR  ORD      150
+\end{lstlisting}
+
+\subsubsection{空白行}
+read.table对于空白行的默认处理:跳过.
+
+但在有些特殊情况下,如一个表有两个数据集,或者空白行以上为元数据,也即解释数据的数据.
+\begin{lstlisting}[language=r]
+> d12<-read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/airlines.csv",header=T,sep="\t",blank.lines.skip = FALSE,stringsAsFactors = FALSE)
+> head(d12,n=8)
+  carrier                   name
+1      AA American Airlines Inc.
+2      B6        JetBlue Airways
+3      DL   Delta Air Lines Inc.
+4                               
+5 carrier                 flight
+6 tailnum                 origin
+7    dest               air_time
+8      AA                   1141
+\end{lstlisting}
+可是又出现新问题:函数按照第一部分的两类变量将后续的所有数据也都写入了两列.
+
+解决:
+
+\begin{lstlisting}[language=r]
+> d12<-read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/airlines.csv",header=T,sep="\t",col.names=paste0("V",1:6),blank.lines.skip = FALSE,stringsAsFactors = FALSE)
+Warning message:
+In read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/airlines.csv",  :
+表头名称和'col.names'的长度不一样
+> head(d12,n=9)
+       V1                     V2      V3     V4   V5       V6
+1      AA American Airlines Inc.                             
+2      B6        JetBlue Airways                             
+3      DL   Delta Air Lines Inc.                             
+4                                                            
+5 carrier                 flight tailnum origin dest air_time
+6      AA                   1141  N619AA    JFK  MIA      160
+7      B6                    725  N804JB    JFK  BQN      183
+8      DL                    461  N668DN    LGA  ATL      116
+\end{lstlisting}
+
+这里用paste0来创建新的变量名称.\textbf{paste0可以理解为胶水函数,用于将需要的字符串粘合在一起}.这里演示的意思是创建6个以V开头,从V1到V6的字符串作为变量名.这种处理方式足以应付平时练习用的小型数据集.
+
+下面代码演示了如何实现自动检测数据及所需的变量数:
+\begin{lstlisting}[language=r]
+> num_of_col<-max(count.fields("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/airlines.csv"))
+
+> d13 <- read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/airlines.csv",header=T,sep="\t",col.names=paste0("V",seq_len(num_of_col)),blank.lines.skip = FALSE,stringsAsFactors = FALSE)
+Warning message:
+In read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/airlines.csv",  :
+表头名称和'col.names'的长度不一样
+
+> head(d13)
+       V1                     V2      V3     V4   V5       V6
+1      AA American Airlines Inc.                             
+2      B6        JetBlue Airways                             
+3      DL   Delta Air Lines Inc.                             
+4                                                            
+5 carrier                 flight tailnum origin dest air_time
+6      AA                   1141  N619AA    JFK  MIA      160
+\end{lstlisting}
+
+count.fields用于自动检测数据集中每一行数据的观测值个数.
+
+max用于找出count.fields输出结果中的最大值.
+
+seq$ \_ $len用于以最大值为参照生成1到最大值的整数序列.
+
+paste0用于定义变量名称.
+
+\subsubsection{默认值,空白}
+理论上来讲,默认值仍是数据观测值的一种,虽然在原始数据中其可能与空白一样没有显示,但是它可以通过其他手段来进行补齐.
+
+而空白可能并不是数据,比如上面的演示中,V3-V6的前四行都是空白,这些空白不属于任何实际数据变量,是真正的空白,因而不能说这些空白是默认值.
+
+如何进行简单地默认值,空白的预处理:
+\begin{lstlisting}[language=r]
+> d14 <- read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights_uneven.csv",header=F,sep="\t",na.strings = c(""),fill=T,stringsAsFactors = FALSE)
+> head(d14)
+       V1     V2      V3     V4   V5       V6    V7
+1 carrier flight tailnum origin dest air_time  <NA>
+2      UA   1545  N14228    EWR  IAH      227  <NA>
+3      UA   1714  N24211    LGA  IAH      227 测试1
+4      AA   1141  N619AA    JFK  MIA      160 测试2
+5      B6    725  N804JB    JFK  BQN      183 测试3
+6      DL    461  N668DN    LGA  ATL      116  <NA>
+\end{lstlisting}
+
+第七列的数据在指定将空白替换成"NA"之后,原有的空白位置被写入了"NA".也就是说,第七列的空白属于数据的一部分.根据实际情况,也可以将多余的数据部分或全部替换成NA,以方便后续的处理和分析.
+\begin{lstlisting}[language=r]
+> d14 <- read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights_uneven.csv",header=F,sep="\t",na.strings = c(paste0("测试",1:3),""),fill=T,stringsAsFactors = FALSE)
+> head(d14)
+       V1     V2      V3     V4   V5       V6 V7
+1 carrier flight tailnum origin dest air_time NA
+2      UA   1545  N14228    EWR  IAH      227 NA
+3      UA   1714  N24211    LGA  IAH      227 NA
+4      AA   1141  N619AA    JFK  MIA      160 NA
+5      B6    725  N804JB    JFK  BQN      183 NA
+6      DL    461  N668DN    LGA  ATL      116 NA
+\end{lstlisting}
+
+当数据集行数较多,不能直接判断NA的个数时,可以配合unique函数找到指定列中的非重复观测值,选取指定观测值并保存到一个向量内,然后将向量指定给na.strings参数来进行替换:
+\begin{lstlisting}[language=r]
+> d14 <- read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights_uneven.csv",header=F,sep="\t",fill=T,stringsAsFactors = FALSE)
+> replace <- unique(d14$V7)
+> replace
+[1] ""      "测试1" "测试2" "测试3"
+> d14 <- read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights_uneven.csv",header=F,sep="\t",fill=T,stringsAsFactors = FALSE,na.strings = c(replace[c(1,3)]))
+> head(d14)
+       V1     V2      V3     V4   V5       V6    V7
+1 carrier flight tailnum origin dest air_time  <NA>
+2      UA   1545  N14228    EWR  IAH      227  <NA>
+3      UA   1714  N24211    LGA  IAH      227 测试1
+4      AA   1141  N619AA    JFK  MIA      160  <NA>
+5      B6    725  N804JB    JFK  BQN      183 测试3
+6      DL    461  N668DN    LGA  ATL      116  <NA>
+\end{lstlisting}
+
+全部替换:
+\begin{lstlisting}[language=r]
+> d14 <- read.table("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/flights_uneven.csv",header=F,sep="\t",fill=T,stringsAsFactors = FALSE,na.strings = c(replace))
+> head(d14)
+       V1     V2      V3     V4   V5       V6 V7
+1 carrier flight tailnum origin dest air_time NA
+2      UA   1545  N14228    EWR  IAH      227 NA
+3      UA   1714  N24211    LGA  IAH      227 NA
+4      AA   1141  N619AA    JFK  MIA      160 NA
+5      B6    725  N804JB    JFK  BQN      183 NA
+6      DL    461  N668DN    LGA  ATL      116 NA
+\end{lstlisting}
+
+\section{readr--进阶数据读取}
+优势:
+\begin{itemize}
+	\item 更快. readr包里的read$ \_ $csv一般要比read.csv快三到十倍.
+	\item 默认设置更简洁. 默认情况下readr包会自动解析每列的数据类型,显示解析结果,无需设置stringasfactors
+	\item 对数据类型的解析更准确.
+\end{itemize}
+
+当一个.csv数据中前面有很多空白行时,skip参数可以直接跳过空白行来读取数据.具体设置非常简单,skip=3即表示跳过前三行数据,从第四行开始读取.这个参数并非只用于跳过空白行,也可以用来读取原始数据的一部分,配合$ n\_max $使用可以做到随心所欲额读取任何一部分数据.
+
+\section{pdfrools--pdf文件}
+一般计量型数据分析很少会遇到读取pdf文件的情况,但是在文本挖掘和主题模型预测中,pdftools包是必备的.这个包只有两个母函数:一个用来从pdf文件中提取数据,另一个则用来将文件渲染成pdf格式,本节只讨论前一个--$ pdf\_info $
+
+它包括6个子函数:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{screenshot003}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{screenshot004}
+\end{figure}
+
+读取文档的代码如下:
+\begin{lstlisting}[language=r]
+> library(pdftools)
+Using poppler version 0.73.0
+> pdf_info(pdf = "E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/pdftools.pdf")
+$version
+[1] "1.5"
+
+$pages
+[1] 5
+
+$encrypted
+[1] FALSE
+
+$linearized
+[1] FALSE
+
+$keys
+$keys$Author
+[1] ""
+
+$keys$Title
+[1] ""
+
+$keys$Subject
+[1] ""
+
+$keys$Creator
+[1] "LaTeX with hyperref package"
+
+$keys$Producer
+[1] "pdfTeX-1.40.15"
+
+$keys$Keywords
+[1] ""
+
+$keys$Trapped
+[1] ""
+
+$keys$PTEX.Fullbanner
+[1] "This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) kpathsea version 6.2.1dev"
+
+
+$created
+[1] "2018-05-27 21:56:10 CST"
+
+$modified
+[1] "2018-05-27 21:56:10 CST"
+
+$metadata
+[1] ""
+
+$locked
+[1] FALSE
+
+$attachments
+[1] FALSE
+
+$layout
+[1] "no_layout"
+\end{lstlisting}
+
+当使用pdf$ \_ $text读取文档内容时,全部内容被提取为一个字符串向量,每页的内容都被单独放置于一个字符串中.
+
+帮助文档的pdf格式一共包含5页,所以这里会得到一个长度为5的字符串向量.
+
+有两个方式可以用于查看提取的文本:可以直接将结果显示在console中,也可以通过[ ]来指定显示某一页的内容.
+\begin{lstlisting}[language=r]
+> text <- pdf_text("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/pdftools.pdf")
+> length(text)
+[1] 5
+> class(text)
+[1] "character"
+> text[1]
+[1] "                               Package ‘pdftools’\r\n                                            May 27, 2018\r\nType Package\r\nTitle Text Extraction, Rendering and Converting of PDF Documents\r\nVersion 1.8\r\nDescription Utilities based on 'libpoppler' for extracting text, fonts, attachments and\r\n      metadata from a PDF file. Also supports high quality rendering of PDF documents info\r\n      PNG, JPEG, TIFF format, or into raw bitmap vectors for further processing in R.\r\nLicense MIT + file LICENSE\r\nURL https://ropensci.org/blog/2016/03/01/pdftools-and-jeroen (blog)\r\n      https://github.com/ropensci/pdftools#readme (devel)\r\n      https://poppler.freedesktop.org (upstream)\r\nBugReports https://github.com/ropensci/pdftools/issues\r\nSystemRequirements Poppler C++ API: libpoppler-cpp-dev (deb) or\r\n      poppler-cpp-devel (rpm). The unit tests also require the\r\n      'poppler-data' package (rpm/deb)\r\nEncoding UTF-8\r\nImports Rcpp (>= 0.12.12)\r\nLinkingTo Rcpp\r\nSuggests jpeg, png, webp, testthat\r\nRoxygenNote 6.0.1.9000\r\nNeedsCompilation yes\r\nAuthor Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>)\r\nMaintainer Jeroen Ooms <jeroen@berkeley.edu>\r\nRepository CRAN\r\nDate/Publication 2018-05-27 13:56:09 UTC\r\nR topics documented:\r\n         pdf_info . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2\r\n         pdf_render_page . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    3\r\nIndex                                                                                                   5\r\n                                                    1\r\n"
+\end{lstlisting}
+文档一共包括6种字体, pdf$ \_ $fonts会给出字体的名称,类型,是否嵌入文档中这三类信息:
+\begin{lstlisting}[language=r]
+> pdf_fonts("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter1/RawData/pdftools.pdf")
+# A tibble: 6 x 4
+name                                type  embedded file 
+<chr>                               <chr> <lgl>    <chr>
+1 DSHWTW+NimbusRomNo9L-Medi           type1 TRUE     ""   
+2 UTHPMJ+NimbusRomNo9L-Regu           type1 TRUE     ""   
+3 DSQFGA+Inconsolata-zi4r             type1 TRUE     ""   
+4 LVIJIF+NimbusSanL-Regu              type1 TRUE     ""   
+5 DQRZJT+NimbusRomNo9L-Regu-Slant_167 type1 TRUE     ""   
+6 YIECHJ+NimbusRomNo9L-ReguItal       type1 TRUE     ""   
+\end{lstlisting}
+
+\chapter{数据清理工具}
+一般来讲,从数据收集到最后报告的整个过程中,数据清理会占用整个流程$ 80\% $的时间.如此耗时的原因是数据清理并非一次性工作,数据清理,计算和可视化是一个动态的循环.根据分析需求的不同,需要应用不同的清理思路和方式.
+
+本章分享数据清理的一些基本原则,作为框架来指导数据清理工作.
+
+\section{基本概念}
+国际上公认的"干净"的数据可以总结为如下三点:
+\begin{itemize}
+	\item 属性相同的变量自成一列
+	\item 单一观测自成一行
+	\item 每个数据值必须独立存在
+\end{itemize}
+
+\textbf{元数据(metadata)}:解释变量名称或数据背景的数据.
+
+\section{tibble包--数据集准备}
+tibble既是R包的名字也是数据在R中的一种存储格式.可以将tibble包理解为R中最常见的data.frame格式的升级版.
+
+如果使用read.csv读取数据,那么数据就会被储存在data.frame格式中.但是当调用read$ \_ $csv时,数据就会存在三种适用格式:tbl$ \_ $df, tbl, data.frame.
+
+因为tibble和readr包都源自Hadley的tidy系列,所以使用readr包时自动植入了tibble的数据格式.
+\begin{lstlisting}[language=r]
+> iris <- read.csv("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter2/RawData/iris.csv",stringsAsFactors = F)
+> class(iris)
+[1] "data.frame"
+
+> library(readr)
+> iris <- read_csv("E:/7.数据分析/headfirst&R数据科学实战/Data-Science-in-Action-R-Tools-and-Case-Studies-master/chapter2/RawData/iris.csv")
+Parsed with column specification:
+cols(
+Sepal.L..Setosa = col_double(),
+Sepal.W..Setosa = col_double(),
+Petal.L..Setosa = col_double(),
+Petal.W..Setosa = col_double(),
+Sepal.L..Versicolor = col_double(),
+Sepal.W..Versicolor = col_double(),
+Petal.L..Versicolor = col_double(),
+Petal.W..Versicolor = col_double(),
+Sepal.L..Virginica = col_double(),
+Sepal.W..Virginica = col_double(),
+Petal.L..Virginica = col_double(),
+Petal.W..Virginica = col_double()
+)
+> class(iris)
+[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame"
+\end{lstlisting}
+
+\subsection{为什么使用tibble}
+三点优势:
+\begin{itemize}
+	\item 稳定性更好,可完整保存变量名称及属性
+	\item 更多的信息展式,警示提醒
+	\item 新的输出方式使得浏览数据时,屏幕的利用率极佳.
+\end{itemize}
+
+第一章中提到查看data.frame中的变量类型时,通常需要调用str函数.但是在tbl格式中,无需调用任何函数.
+
+默认情况下,tbl格式会根据console窗口的大小自动调整内容的展示.内容会包括数据格式,列总数,行总数,变量名称和类型,以及无法完全展示部分的变量信息.
+\begin{lstlisting}[language=r]
+> iris
+# A tibble: 50 x 12
+  Sepal.L..Setosa Sepal.W..Setosa Petal.L..Setosa Petal.W..Setosa
+            <dbl>           <dbl>           <dbl>           <dbl>
+1             5.1             3.5             1.4             0.2
+2             4.9             3               1.4             0.2
+3             4.7             3.2             1.3             0.2
+4             4.6             3.1             1.5             0.2
+5             5               3.6             1.4             0.2
+6             5.4             3.9             1.7             0.4
+7             4.6             3.4             1.4             0.3
+8             5               3.4             1.5             0.2
+9             4.4             2.9             1.4             0.2
+10             4.9             3.1             1.5             0.1
+# ... with 40 more rows, and 8 more variables: Sepal.L..Versicolor <dbl>,
+#   Sepal.W..Versicolor <dbl>, Petal.L..Versicolor <dbl>,
+#   Petal.W..Versicolor <dbl>, Sepal.L..Virginica <dbl>,
+#   Sepal.W..Virginica <dbl>, Petal.L..Virginica <dbl>,
+#   Petal.W..Virginica <dbl>
+\end{lstlisting}
+
+\subsection{创建tbl格式}
+可以通过函数tibble或者tribble来创建新的数据框.
+
+<int>表示integer整数, <dbl>表示double浮点型.
+
+创建数据框:
+\begin{lstlisting}[language=r]
+> library(tibble)
+> tibble(a=1:6,b=a*2)
+# A tibble: 6 x 2
+      a     b
+  <int> <dbl>
+1     1     2
+2     2     4
+3     3     6
+4     4     8
+5     5    10
+6     6    12
+\end{lstlisting}
+
+tibble函数比较适合用来创建小型数据集.
+
+\subsection{as$ \_ $tibble--转换已有格式的数据集}
+可以先使用is$ \_ $tibble来测试目标对象是否已是tbl格式.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{screenshot005}
+\end{figure}
+\subsubsection{as$ \_ $tibble函数直接将vector格式转换成数据框格式}
+\begin{lstlisting}[language=r]
+> y <- 1:3
+> y
+[1] 1 2 3
+> as_tibble(x=y)
+# A tibble: 3 x 1
+  value
+  <int>
+1     1
+2     2
+3     3
+\end{lstlisting}
+\subsubsection{矩阵格式转换}
+\begin{lstlisting}[language=r]
+> b <- matrix(data=1:9,nrow=3,byrow = T,dimnames = list(paste0("Row",1:3),paste0("col",1:3)))
+> b
+     col1 col2 col3
+Row1    1    2    3
+Row2    4    5    6
+Row3    7    8    9
+
+> as_tibble(x=b,rownames=NULL)
+# A tibble: 3 x 3
+   col1  col2  col3
+  <int> <int> <int>
+1     1     2     3
+2     4     5     6
+3     7     8     9
+
+> as_tibble(x=b,rownames=NA)
+# A tibble: 3 x 3
+   col1  col2  col3
+* <int> <int> <int>
+1     1     2     3
+2     4     5     6
+3     7     8     9
+\end{lstlisting}
+\subsubsection{列表格式转换}
+\begin{lstlisting}[language=r]
+> A<-list(a=1:3,b=letters[2:4],c=1)
+> A
+$a
+[1] 1 2 3
+
+$b
+[1] "b" "c" "d"
+
+$c
+[1] 1
+
+> as_tibble(x=A)
+# A tibble: 3 x 3
+      a b         c
+  <int> <chr> <dbl>
+1     1 b         1
+2     2 c         1
+3     3 d         1
+\end{lstlisting}
+每个要素成为一个变量,原列表中的要素c中的数值将被重复使用三次以对应其他变量的长度.如果要素c的长度为2,即包含两个数值,那么转换会失败.
+
+\subsection{add$ \_ $row/column--实用小工具}
+创建一个tbl,使用$ \$ $来为数据新增一列名为k的变量.
+\begin{lstlisting}[language=r]
+> f <- tibble(i=1:3,j=c("John","Sam","Joy"))
+> f
+# A tibble: 3 x 2
+      i j    
+  <int> <chr>
+1     1 John 
+2     2 Sam  
+3     3 Joy 
+ 
+> f$k <- 3:1
+> f
+# A tibble: 3 x 3
+      i j         k
+  <int> <chr> <int>
+1     1 John      3
+2     2 Sam       2
+3     3 Joy       1
+\end{lstlisting}
+
+在数据框的末尾加入一行新数据也可以实现新增列的功能.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot006}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> library(tibble)
+> f
+# A tibble: 3 x 3
+      i j         k
+  <int> <chr> <int>
+1     1 John      3
+2     2 Sam       2
+3     3 Joy       1
+
+> add_row(f,i=4,j="Jon",k=0)
+# A tibble: 4 x 3
+      i j         k
+  <dbl> <chr> <dbl>
+1     1 John      3
+2     2 Sam       2
+3     3 Joy       1
+4     4 Jon       0
+\end{lstlisting}
+
+在第三行之前插入一行新数据:
+\begin{lstlisting}[language=r]
+> library(tibble)
+> f
+# A tibble: 3 x 3
+      i j         k
+  <int> <chr> <int>
+1     1 John      3
+2     2 Sam       2
+3     3 Joy       1
+> add_row(f,i=4,j="Jon",.before = 3)
+# A tibble: 4 x 3
+      i j         k
+  <dbl> <chr> <int>
+1     1 John      3
+2     2 Sam       2
+3     4 Jon      NA
+4     3 Joy       1
+\end{lstlisting}
+
+在第一行之后插入新数据:
+\begin{lstlisting}[language=r]
+> add_row(f,i=4,j="Jon",.after = 1)
+# A tibble: 4 x 3
+      i j         k
+  <dbl> <chr> <int>
+1     1 John      3
+2     4 Jon      NA
+3     2 Sam       2
+4     3 Joy       1
+\end{lstlisting}
+
+在第一列之后插入新变量:
+\begin{lstlisting}[language=r]
+> add_column(f,l=nrow(f):1,.after=1)
+# A tibble: 3 x 4
+      i     l j         k
+  <int> <int> <chr> <int>
+1     1     3 John      3
+2     2     2 Sam       2
+3     3     1 Joy       1
+\end{lstlisting}
+
+\section{tidyr--数据清道夫}
+\subsection{为什么使用tidyr包}
+\begin{enumerate}
+	\item 简洁直观的函数名称,可读性极强--易上手
+	\item 默认设置可以满足大部分使用需求,无需时刻参考帮助文档--易使用
+	\item 不同函数中的参数设置结构清晰--易于记忆
+	\item 处理数据过程中完整保留了变量属性及数据格式--不易出现未知错误
+\end{enumerate}
+\subsection{gather/spread--"长""宽"数据转换}
+\subsubsection{gather--"宽"变"长"}
+在理想的情况下,整洁的数据框应为如下图格式,因子一列,变量一列,剩余所有数值型数据一列.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot007}
+\end{figure}
+
+建立以下脏数据,保存在名为df的数据框中:
+\begin{lstlisting}[language=r]
+> library(tibble)
+> df <- tribble(~id,~"b weight",~"g weight",~"b age",~"g age",
++         1,70,NA,23,NA,
++         2,NA,60,NA,25,
++         3,NA,55,NA,26,
++         4,NA,58,NA,22,
++         5,80,NA,23,NA,
++         6,85,NA,30,NA)
+> df
+# A tibble: 6 x 5
+     id `b weight` `g weight` `b age` `g age`
+  <dbl>      <dbl>      <dbl>   <dbl>   <dbl>
+1     1         70         NA      23      NA
+2     2         NA         60      NA      25
+3     3         NA         55      NA      26
+4     4         NA         58      NA      22
+5     5         80         NA      23      NA
+6     6         85         NA      30      NA
+\end{lstlisting}
+
+然后使用管道函数$ \%>\% $将df传递给gather函数,因为管道函数的存在,所以无需引用df,而以"."来代替,指定指标列key,数值列为weight,保留序列号(保留列需要使用负号加列名的形式进行设置),并移除默认值.之后会得到一个中间产物数据框,该数据框指标列中的"gender"和指标虽然以空格分割开,但仍然在一列中,不满足"干净"数据的原则.所以再次使用管道函数将中间产物的数据框,传递给函数separate,将key列拆分成两列,分别为性别和key:
+\begin{lstlisting}[language=r]
+> library(magrittr)
+> library(tidyr)
+> df1 <- df %>% gather(data=.,key,weight,-id,na.rm=T) %>% separate(data=.,key,into=c("gender","key"))
+# A tibble: 12 x 4
+      id gender key    weight
+   <dbl> <chr>  <chr>   <dbl>
+ 1     1 b      weight     70
+ 2     5 b      weight     80
+ 3     6 b      weight     85
+ 4     2 g      weight     60
+ 5     3 g      weight     55
+ 6     4 g      weight     58
+ 7     1 b      age        23
+ 8     5 b      age        23
+ 9     6 b      age        30
+10     2 g      age        25
+11     3 g      age        26
+12     4 g      age        22
+\end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{screenshot008}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot009}
+\end{figure}
+\subsubsection{spread--"长"数据变"宽"}
+函数spread是gather函数的逆向函数.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{screenshot010}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> df1 %>% spread(data=.,key,weight)
+# A tibble: 6 x 4
+     id gender   age weight
+  <dbl> <chr>  <dbl>  <dbl>
+1     1 b         23     70
+2     2 g         25     60
+3     3 g         26     55
+4     4 g         22     58
+5     5 b         23     80
+6     6 b         30     85
+\end{lstlisting}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot011}
+\end{figure}
+
+\subsection{separate/unite--拆分合并列}
+前面已经展示了函数separate的具体用法,该函数完全可以理解为是excel中的拆分列,该函数无法对一个单独的数值位置进行操作.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot012}
+\end{figure}
+
+\subsection{replace$ \_ $na/drop$ \_ $na--默认值处理工具}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot013}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot014}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot015}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> df <- df %>%
++   gather(key, weight, -id) %>%
++   separate(key, c("gender","key"))%>%
++   drop_na(weight)	
+> df
+# A tibble: 12 x 4
+id gender key    weight
+<dbl> <chr>  <chr>   <dbl>
+ 1     1 b      weight     70
+ 2     5 b      weight     80
+ 3     6 b      weight     85
+ 4     2 g      weight     60
+ 5     3 g      weight     55
+ 6     4 g      weight     58
+ 7     1 b      age        23
+ 8     5 b      age        23
+ 9     6 b      age        30
+10     2 g      age        25
+11     3 g      age        26
+12     4 g      age        22
+\end{lstlisting}
+
+\subsection{fill/complete--填坑神器}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot016}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot017}
+\end{figure}
+\subsection{separate$ \_ $rows/nest/unest--行数据处理}
+\subsubsection{separate$ \_ $rows--拆分单元格}
+当遇到一个数据单位中出现多个数值的情况时,该函数就会很有用.将一个数据单位中的不同数值按照参数进行sep中给出的参数拆分,然后将拆分之后的结果顺序地放在同一列的不同行中,并自动增加行数.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{screenshot018}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot019}
+\end{figure}
+
+\subsubsection{nest/unest--压缩和解压缩行数据}
+nest和unest是两个互逆数据,它们最重要的功能是将一个数据框按照用户自定义的规则,将其压缩成一个新的数据框,新的数据框中包含列表型数据.
+\begin{lstlisting}[language=r]
+> df
+# A tibble: 6 x 4
+id gender weight   age
+<dbl> <chr>   <dbl> <dbl>
+1     1 男         70    23
+2     2 女         60    25
+3     3 女         55    26
+4     4 女         58    22
+5     5 男         80    23
+6     6 男         85    30
+> df_tidy <- df
+> df_tidy %>% nest(-gender)
+# A tibble: 2 x 2
+  gender data            
+  <chr>  <list>          
+1 男     <tibble [3 x 3]>
+2 女     <tibble [3 x 3]>
+Warning message:
+All elements of `...` must be named.
+Did you want `data = c(id, weight, age)`? 
+\end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot020}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot021}
+\end{figure}
+
+\section{lubridate日期时间处理}
+\subsection{为什么使用lubridate}
+日期的格式各种各样,在处理与时间有关的数值时,解析日期和时间变量往往无可避免.
+
+\subsection{ymd/ymd$ \_ $hms--年月日还是日月年}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot022}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot023}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot024}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot025}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> library(lubridate)
+
+载入程辑包：‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+date, intersect, setdiff, union
+
+> ymd(c(20210306,"2022-03-06","2023 3 6"))
+[1] "2021-03-06" "2022-03-06" "2023-03-06"
+
+> dmy_h(c(1802201810,"20-10-2018 24"),tz="Asia/Shanghai")
+[1] "2018-02-18 10:00:00 CST" "2018-10-21 00:00:00 CST"
+\end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot026}
+\end{figure}
+
+\subsection{year/month/week/day/hour/minute/second--时间单位提取}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot027}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> date <- ymd(c(20210306,"2022-03-06","2023 3 6"))
+> year(date)
+[1] 2021 2022 2023
+> month(date)
+[1] 3 3 3
+> week(date)
+[1] 10 10 10
+> day(date)
+[1] 6 6 6
+> hour(date)
+[1] 0 0 0
+\end{lstlisting}
+
+\subsection{guess$ \_ $formats/parse$ \_ $date$ \_ $time--时间日期格式分析}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot028}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot029}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> example_messydate <- c("24 Jan 2018",1802201810)
+> library(lubridate)
+
+载入程辑包：‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+date, intersect, setdiff, union
+
+> guess_formats(example_messydate,c("mdY","BdY","Bdy","bdY","bdy","dbY","dmYH"))
+dObY       dOmYH        dmYH 
+"%d %Ob %Y" "%d%Om%Y%H"  "%d%m%Y%H" 
+> parse_date_time(example_messydate,orders = c("dObY","dOmYH","dmYH"))
+[1] "2018-01-24 00:00:00 UTC" "2018-02-18 10:00:00 UTC"
+\end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot030}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot031}
+\end{figure}
+
+\section{stringr字符处理工具}
+\subsection{baseR vs stringr}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot032}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot033}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> library(stringr)
+
+> example_txt <- "sub and gsub perform replacement of the first and all matches respectively."
+> str_replace(string=example_txt,pattern = "a",replacement = "@")
+[1] "sub @nd gsub perform replacement of the first and all matches respectively."
+> str_replace_all(string=example_txt,pattern = "a",replacement = "@")
+[1] "sub @nd gsub perform repl@cement of the first @nd @ll m@tches respectively."
+\end{lstlisting}
+
+\subsection{正则表达式基础}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot034}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{screenshot035}
+\end{figure}
+\subsection{简易正则表达式创建}
+数据集df2是笔者从网络上获取的一组英文期刊作者名和年份.
+
+\begin{lstlisting}[language=r]
+> library(tibble)
+> df2 <- tribble(~year,~authors,
++                2016,"D.F.Guinto pp.121-132",
++                2017,"W.T.Bussell and C.M.Triggs pp.23-27",
++                2017,"A.W.Holmes and G.Jing pp. 37-45")
+
+> df2
+# A tibble: 3 x 2
+   year authors                            
+  <dbl> <chr>                              
+1  2016 D.F.Guinto pp.121-132              
+2  2017 W.T.Bussell and C.M.Triggs pp.23-27
+3  2017 A.W.Holmes and G.Jing pp. 37-45    
+\end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot036}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> library(stringr)
+> str_view(df2$authors,pattern = ".+")
+\end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{screenshot037}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> str_view(df2$authors,pattern = "\\.")
+\end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{screenshot038}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> str_view_all(df2$authors,pattern = "\\.")
+\end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{screenshot039}
+\end{figure}
+
+匹配所有字母和数字:
+\begin{lstlisting}[language=r]
+> str_view_all(df2$authors,pattern = "[:alnum:]+")
+\end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{screenshot040}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot041}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> str_detect(df2$authors,pattern = "\\.")
+[1] TRUE TRUE TRUE
+\end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot042}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+> df2$authors <- str_replace(df2$authors,pattern = "pp\\..+[:digit:]{2,3}\\-[:digit:]{2,3}",replacement = "")
+> df2
+# A tibble: 3 x 2
+   year authors                              
+  <dbl> <chr>                                
+1  2016 "D.F.Guinto "                        
+2  2017 "W.T.Bussell and C.M.Triggs pp.23-27"
+3  2017 "A.W.Holmes and G.Jing " 
+\end{lstlisting}
+
+\subsection{文本挖掘浅析}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{screenshot043}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{screenshot044}
+\end{figure}
+
+\begin{lstlisting}[language=r]
+	
+\end{lstlisting}
+
+\begin{lstlisting}[language=r]
+	
+\end{lstlisting}
+
+\begin{lstlisting}[language=r]
+	
+\end{lstlisting}
+
+\begin{lstlisting}[language=r]
+	
+\end{lstlisting}
+
+\begin{lstlisting}[language=r]
+	
+\end{lstlisting}
+
+\begin{lstlisting}[language=r]
+	
+\end{lstlisting}
+
+\begin{lstlisting}[language=r]
+	
+\end{lstlisting}
+
+\begin{lstlisting}[language=r]
+	
+\end{lstlisting}
+
+\begin{lstlisting}[language=r]
+	
+\end{lstlisting}
+
+\begin{lstlisting}[language=r]
+	
+\end{lstlisting}
+
+\begin{lstlisting}[language=r]
+	
+\end{lstlisting}
+
+
+
+\end{document}
